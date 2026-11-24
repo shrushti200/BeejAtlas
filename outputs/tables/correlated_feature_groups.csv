@@ -1,0 +1,8 @@
+Group,Feature Count,Features
+Group 1,7,"Area, Perimeter, MajorAxisLength, MinorAxisLength, ConvexArea, EquivDiameter, ShapeFactor1"
+Group 2,4,"AspectRatio, Eccentricity, Compactness, ShapeFactor3"
+Group 3,1,Extent
+Group 4,1,Roundness
+Group 5,1,ShapeFactor2
+Group 6,1,ShapeFactor4
+Group 7,1,Solidity

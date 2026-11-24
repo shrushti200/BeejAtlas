@@ -1,0 +1,31 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments and local configuration
+.venv/
+venv/
+env/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Downloaded / processed data: regenerate from documented sources
+/data/raw/*
+!/data/raw/.gitkeep
+/data/processed/*
+!/data/processed/.gitkeep
+
+# Locally fitted model artefacts
+/models/
+*.joblib
+
+# Do not publish CSE or community-held source data without written permission
+/data/cse/
+
+# Local backups and accidental files
+/README_backup.md
+/app/streamlit_app_backup.py
+/src/processing/analyze_class_features,py.txt
