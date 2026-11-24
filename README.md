@@ -170,6 +170,33 @@ The scripts generate tables under `outputs/tables/`, figures under `outputs/figu
 
 ```cmd
 py src\ml\repeated_cross_validation.py
+```
+
+### 9. Launch the Streamlit dashboard
+
+```cmd
+py -m streamlit run app\streamlit_app.py
+```
+
+## Selected research visualisations
+
+The following figures summarise the exploratory analysis and model interpretation performed on the UCI Dry Bean benchmark.
+
+### 1. Dry-bean category distribution
+
+![Dry Bean Category Distribution](outputs/figures/class_distribution.png)
+
+### 2. Feature correlation heatmap
+
+![Feature Correlation Heatmap](outputs/figures/correlation_heatmap.png)
+
+### 3. Random Forest confusion matrix
+
+![Random Forest Confusion Matrix](outputs/figures/random_forest_confusion_matrix.png)
+
+### 4. Grouped permutation importance
+
+![Grouped Permutation Importance](outputs/figures/grouped_permutation_importance.png)
 
 ## Machine-learning methodology
 
