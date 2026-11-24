@@ -40,9 +40,55 @@ def load_csv(file_path):
 
 data = load_csv(DATA_FILE)
 
-model_results = load_csv(
-    TABLES / "model_comparison.csv"
-)
+
+@st.cache_data(show_spinner="Loading the UCI Dry Bean dataset...")
+def load_dataset(file_path):
+
+    path = Path(file_path)
+
+    # Use the existing local cleaned dataset when available.
+    if path.exists():
+        return pd.read_csv(path)
+
+    # Otherwise retrieve the public UCI dataset.
+    try:
+        from ucimlrepo import fetch_ucirepo
+
+        st.info(
+            "Retrieving the UCI Dry Bean benchmark dataset..."
+        )
+
+        dry_bean = fetch_ucirepo(id=602)
+
+        features = dry_bean.data.features.copy()
+        targets = dry_bean.data.targets
+
+        dataset = features.copy()
+
+        dataset["Class"] = targets.iloc[:, 0].to_numpy()
+
+        dataset = (
+            dataset
+            .drop_duplicates(keep="first")
+            .reset_index(drop=True)
+        )
+
+        return dataset
+
+    except Exception as exc:
+
+        st.error(
+            "Unable to retrieve the UCI Dry Bean dataset. "
+            "Please check the data source connection."
+        )
+
+        st.caption(str(exc))
+
+        return None
+
+
+data = load_dataset(DATA_FILE)
+
 
 cv_results = load_csv(
     TABLES / "cross_validation_results.csv"
