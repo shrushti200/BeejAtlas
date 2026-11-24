@@ -37,10 +37,6 @@ def load_csv(file_path):
 
     return pd.read_csv(path)
 
-
-data = load_csv(DATA_FILE)
-
-
 @st.cache_data(show_spinner="Loading the UCI Dry Bean dataset...")
 def load_dataset(file_path):
 
@@ -89,6 +85,9 @@ def load_dataset(file_path):
 
 data = load_dataset(DATA_FILE)
 
+model_results = load_csv(
+    TABLES / "model_comparison.csv"
+)
 
 cv_results = load_csv(
     TABLES / "cross_validation_results.csv"
