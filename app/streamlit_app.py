@@ -145,6 +145,224 @@ st.markdown(
 
 
 # ==================================================
+# 3A. BEEJATLAS VISUAL DESIGN SYSTEM
+# ==================================================
+
+st.markdown(
+    """
+    <style>
+
+    :root {
+        --ba-forest: #18392F;
+        --ba-green: #315C4B;
+        --ba-sage: #8DAA91;
+        --ba-sage-light: #E8EFE8;
+        --ba-cream: #F6F7F3;
+        --ba-white: #FFFFFF;
+        --ba-ink: #26352F;
+        --ba-muted: #6D7972;
+        --ba-border: #E1E7E0;
+    }
+
+    /* Main application background */
+
+    .stApp,
+    [data-testid="stAppViewContainer"] {
+        background-color: var(--ba-cream);
+        color: var(--ba-ink);
+    }
+
+    [data-testid="stHeader"] {
+        background-color: rgba(246, 247, 243, 0.9);
+    }
+
+    [data-testid="stMainBlockContainer"] {
+        max-width: 1320px;
+        padding-top: 2rem;
+        padding-bottom: 3rem;
+    }
+
+    /* Typography */
+
+    .main-title {
+        font-size: clamp(2.4rem, 4vw, 3.2rem);
+        font-weight: 750;
+        letter-spacing: -1.8px;
+        color: var(--ba-forest);
+        margin-bottom: 0.2rem;
+        line-height: 1.15;
+    }
+
+    .subtitle {
+        color: var(--ba-muted);
+        font-size: 1rem;
+        line-height: 1.7;
+        margin-top: 0.3rem;
+    }
+
+    h1, h2, h3 {
+        color: var(--ba-forest) !important;
+        letter-spacing: -0.5px;
+    }
+
+    h2 {
+        font-weight: 700 !important;
+    }
+
+    h3 {
+        font-weight: 650 !important;
+    }
+
+    p, li {
+        color: var(--ba-ink);
+        line-height: 1.7;
+    }
+
+    /* Sidebar */
+
+    section[data-testid="stSidebar"] {
+        background-color: #EDF2EC;
+        border-right: 1px solid var(--ba-border);
+    }
+
+    section[data-testid="stSidebar"] h1 {
+        color: var(--ba-forest) !important;
+        font-size: 1.7rem;
+        letter-spacing: -0.8px;
+    }
+
+    section[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
+        color: var(--ba-muted);
+    }
+
+    section[data-testid="stSidebar"] [data-testid="stRadio"] label {
+        border-radius: 10px;
+        padding: 0.35rem 0.55rem;
+        transition: background-color 0.2s ease;
+    }
+
+    section[data-testid="stSidebar"] [data-testid="stRadio"] label:has(input:checked) {
+        background-color: #DCE8DE;
+        border: 1px solid #C9D9CB;
+    }
+
+    section[data-testid="stSidebar"] [data-testid="stRadio"] label:hover {
+        background-color: #E3EBE2;
+    }
+
+    /* Dataset metric cards */
+
+    div[data-testid="stMetric"] {
+        background-color: var(--ba-white);
+        border: 1px solid var(--ba-border);
+        border-radius: 15px;
+        padding: 18px 20px;
+        box-shadow: 0 3px 12px rgba(24, 57, 47, 0.045);
+    }
+
+    div[data-testid="stMetricLabel"] {
+        color: var(--ba-muted);
+        font-weight: 600;
+    }
+
+    div[data-testid="stMetricValue"] {
+        color: var(--ba-forest);
+        font-weight: 750;
+    }
+
+    /* Charts */
+
+    div[data-testid="stPlotlyChart"] {
+        background-color: var(--ba-white);
+        border: 1px solid var(--ba-border);
+        border-radius: 15px;
+        padding: 8px;
+        box-shadow: 0 3px 12px rgba(24, 57, 47, 0.035);
+    }
+
+    /* Data tables */
+
+    [data-testid="stDataFrame"] {
+        border: 1px solid var(--ba-border);
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    /* Buttons */
+
+    .stButton > button,
+    [data-testid="stDownloadButton"] button,
+    .stLinkButton > a {
+        border-radius: 10px;
+        font-weight: 600;
+        border: 1px solid #C9D8CB;
+        transition: all 0.2s ease;
+    }
+
+    .stButton > button:hover,
+    [data-testid="stDownloadButton"] button:hover {
+        border-color: var(--ba-green);
+        color: var(--ba-green);
+    }
+
+    /* Alerts and information panels */
+
+    [data-testid="stAlert"] {
+        border-radius: 13px;
+        border: 1px solid var(--ba-border);
+    }
+
+    /* Inputs */
+
+    input, textarea {
+        border-radius: 9px !important;
+    }
+
+    /* Dividers */
+
+    hr {
+        border-color: var(--ba-border) !important;
+    }
+
+    /* Responsive layout */
+
+    @media (max-width: 768px) {
+        [data-testid="stMainBlockContainer"] {
+            padding: 1.1rem 1rem 2rem;
+        }
+
+        .main-title {
+            font-size: 2.3rem;
+        }
+    }
+
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Consistent colours and styling for every Plotly Express chart.
+
+px.defaults.template = "plotly_white"
+
+px.defaults.color_discrete_sequence = [
+    "#315C4B",
+    "#8DAA91",
+    "#C5A77C",
+    "#71899A",
+    "#B87967",
+    "#9A8BAA",
+    "#8A957A"
+]
+
+px.defaults.color_continuous_scale = [
+    "#EDF3ED",
+    "#A7C1A8",
+    "#315C4B"
+]
+
+
+# ==================================================
 # 4. SIDEBAR NAVIGATION
 # ==================================================
 
