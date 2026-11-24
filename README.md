@@ -10,6 +10,14 @@ BeejAtlas is an independent student research project inspired by seed conservati
 
 ## Project Status
 
+### Live Demo
+
+Explore the deployed interactive research dashboard:
+
+**[Launch BeejAtlas](https://beejatlas-nrpgwuzvmc6xxk7qndt46o.streamlit.app/)**
+
+**Source Code:** [GitHub Repository](https://github.com/shrushti200/BeejAtlas)
+
 ### Implemented
 
 - Downloaded the UCI Dry Bean dataset using `ucimlrepo`.
@@ -23,6 +31,7 @@ BeejAtlas is an independent student research project inspired by seed conservati
 - Examined confusion matrices, individual permutation importance and grouped permutation importance.
 - Developed an interactive Streamlit dashboard using Plotly.
 - Prepared a research report documenting methodology, experimental findings and limitations.
+- Deployed the interactive Streamlit dashboard publicly using Streamlit Community Cloud.
 
 ### Planned
 
@@ -31,6 +40,7 @@ BeejAtlas is an independent student research project inspired by seed conservati
 - Add automated tests and strengthen reproducibility.
 - Deploy the Streamlit application publicly.
 - Explore structured database integration using SQLite.
+- Deploy the Streamlit application publicly.
 
 ---
 
