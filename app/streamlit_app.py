@@ -49,11 +49,6 @@ def load_dataset(file_path):
     # Otherwise retrieve the public UCI dataset.
     try:
         from ucimlrepo import fetch_ucirepo
-
-        st.info(
-            "Retrieving the UCI Dry Bean benchmark dataset..."
-        )
-
         dry_bean = fetch_ucirepo(id=602)
 
         features = dry_bean.data.features.copy()
