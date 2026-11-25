@@ -457,35 +457,34 @@ def show_csv_report(filename):
 
 if page == "Project Overview":
 
-    st.subheader("Welcome to BeejAtlas ")
+    # HERO SECTION
 
-    st.write(
-        """
-        BeejAtlas is an independent Data Science project inspired by
-        traditional seed conservation, agricultural biodiversity
-        and community-led efforts to preserve crop diversity.
+    with st.container(border=True):
 
-        The project combines data exploration, database design,
-        machine learning and interactive visualisation.
-        """
-    )
+        st.caption("INDEPENDENT RESEARCH PROJECT")
 
-    st.info(
-        """
-        **Research data distinction**
+        st.title(
+            "Understanding seed diversity through data science."
+        )
 
-        The current machine-learning experiment uses the UCI Dry Bean
-        dataset as an independent classification benchmark.
+        st.write(
+            "An exploration of agricultural biodiversity "
+            "through data analysis, statistical evaluation "
+            "and machine learning."
+        )
 
-        It is not a dataset of India's traditional seed varieties.
-        The Indian community seed-bank research component is planned
-        separately, subject to data-reuse permission.
-        """
-    )
+        st.caption(
+            "DATA EXPLORATION  |  MACHINE LEARNING  |  RESEARCH"
+        )
+
+
+    st.write("")
+
+    # DATASET METRICS
 
     if data is not None:
 
-        st.subheader("Dataset at a glance")
+        st.markdown("### Dataset overview")
 
         c1, c2, c3, c4 = st.columns(4)
 
@@ -495,59 +494,181 @@ if page == "Project Overview":
         )
 
         c2.metric(
-            "Features",
-            len(data.columns) - 1
+            "Numerical features",
+            len(data.select_dtypes(include="number").columns)
         )
 
         c3.metric(
-            "Categories",
+            "Bean categories",
             data["Class"].nunique()
         )
 
         c4.metric(
-            "Duplicate records",
+            "Exact duplicates",
             data.duplicated().sum()
         )
 
-        st.subheader("Bean category distribution")
+        st.write("")
 
-        counts = data["Class"].value_counts().reset_index()
+        # CATEGORY DISTRIBUTION
 
-        counts.columns = ["Category", "Observations"]
+        left, right = st.columns([1.45, 0.85])
 
-        fig = px.bar(
-            counts,
-            x="Category",
-            y="Observations",
-            color="Category",
-            title="Distribution of Dry Bean Categories"
+        with left:
+
+            st.markdown("### Category distribution")
+
+            counts = (
+                data["Class"]
+                .value_counts()
+                .rename_axis("Category")
+                .reset_index(name="Observations")
+                .sort_values("Category")
+            )
+
+            fig = px.bar(
+                counts,
+                x="Category",
+                y="Observations",
+                color="Category",
+                color_discrete_sequence=[
+                    "#315C4B",
+                    "#78917C",
+                    "#C5A77C",
+                    "#8297A1",
+                    "#B77968",
+                    "#9684A3",
+                    "#9DAA83"
+                ]
+            )
+
+            fig.update_layout(
+                template="plotly_white",
+                showlegend=False,
+                plot_bgcolor="rgba(0,0,0,0)",
+                paper_bgcolor="rgba(0,0,0,0)",
+                margin=dict(l=10, r=10, t=15, b=10),
+                font=dict(
+                    family="Arial",
+                    color="#26352F"
+                ),
+                xaxis_title=None,
+                yaxis_title="Observations"
+            )
+
+            fig.update_xaxes(showgrid=False)
+
+            fig.update_yaxes(
+                gridcolor="#E5EAE5",
+                zeroline=False
+            )
+
+            fig.update_traces(
+                marker_line_width=0
+            )
+
+            st.plotly_chart(
+                fig,
+                use_container_width=True,
+                config={"displayModeBar": False}
+            )
+
+        # RESEARCH SNAPSHOT
+
+        with right:
+
+            st.markdown("### Research snapshot")
+            st.markdown("**UCI Dry Bean**")
+
+            st.write(
+                "Seven registered dry-bean categories represented through sixteen numerical measurements."
+            )
+
+            st.divider()
+
+            st.markdown("**Classification models**")
+            st.write("Dummy Classifier · Logistic Regression · Random Forest")
+
+            st.divider()
+
+            st.caption(
+                "Evaluation includes stratified cross-validation, confusion matrices and permutation-based feature importance."
+            )
+
+    else:
+
+        st.warning(
+            "The dataset is currently unavailable. "
+            "Please check the data source connection."
         )
 
-        st.plotly_chart(
-            fig,
-            use_container_width=True
+    st.divider()
+
+    # RESEARCH FOCUS
+
+    st.markdown("### Research focus")
+
+    st.caption(
+        "The project combines three complementary areas "
+        "of data science."
+    )
+
+    focus1, focus2, focus3 = st.columns(3)
+
+    focus_cards = [
+        (
+            focus1,
+            "01 / EXPLORATION",
+            "Data Exploration",
+            "Study physical measurements, category distributions "
+            "and relationships between numerical features."
+        ),
+        (
+            focus2,
+            "02 / EVALUATION",
+            "Machine Learning",
+            "Compare classification algorithms using accuracy, "
+            "Macro F1 and balanced accuracy."
+        ),
+        (
+            focus3,
+            "03 / INTERPRETATION",
+            "Model Insights",
+            "Investigate confusion patterns and understand the "
+            "contribution of individual and grouped features."
         )
+    ]
 
-    st.subheader("Project objectives")
 
-    left, right = st.columns(2)
+    for column, label, heading, description in focus_cards:
 
-    with left:
-        st.markdown("**Data Science**")
-        st.write(
-            "- Explore physical seed characteristics\n"
-            "- Investigate feature correlations\n"
-            "- Analyse category distributions"
-        )
+        with column:
+            st.caption(label)
+            st.subheader(heading)
+            st.write(description)
 
-    with right:
-        st.markdown("**Machine Learning**")
-        st.write(
-            "- Compare classification algorithms\n"
-            "- Evaluate model performance\n"
-            "- Investigate feature importance"
-        )
+    st.divider()
 
+    # RESEARCH SCOPE
+
+    st.markdown("### Research scope")
+
+    st.info(
+        """
+        **Important distinction:** The current machine-learning
+        experiment uses the UCI Dry Bean benchmark. It does not
+        identify Indian traditional seed varieties or represent
+        India's community seed-bank diversity.
+
+        The Indian seed-conservation component is a separate
+        planned direction, subject to appropriate data-reuse
+        permission from the relevant organisations.
+        """
+    )
+
+    st.caption(
+        "BeejAtlas is an independent student research project."
+    )
 
 # ==================================================
 # 8. SEED DATA EXPLORER
